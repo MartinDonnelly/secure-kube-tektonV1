@@ -76,13 +76,13 @@ spec:
       spec:
         pipelineRef:
           name: pipeline-simple-clone
-        resources:
-          - name: app-image
-            resourceRef:
-              name: image-to-build
-          - name: target-cluster
-            resourceRef:
-              name: $(params.cluster-name)
+        #resources:
+        #  - name: app-image
+         #   resourceRef:
+        #      name: image-to-build
+        #  - name: target-cluster
+        #    resourceRef:
+        #      name: $(params.cluster-name)
         params:
           - name: pipeline-pvc
             value: pipelinerun-$(uid)-pvc
