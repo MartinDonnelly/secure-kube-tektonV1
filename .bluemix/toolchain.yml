@@ -75,7 +75,7 @@ services:
       legal: true
   tekton-temp-common-repo:
     service_id: > 
-      $env.pipelinetype === 'tekton' ? 'githubconsolidated' : ''
+      $env.pipelinetype === 'tekton' ? 'github_integrated' : ''
     parameters:
       repo_name: 'common-tekton-temp-{{timestamp}}'
       repo_url: >
