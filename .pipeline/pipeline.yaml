@@ -37,7 +37,7 @@ spec:
   tasks:
     - name: fetch-code
       taskRef:
-        name: clone-repo-task
+        name: git-clone-repo
       params:
         - name: task-pvc
           value: $(params.pipeline-pvc)
