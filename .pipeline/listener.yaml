@@ -10,18 +10,6 @@ spec:
       description: the branch for the git repo
     - name: apikey
       description: the ibmcloud api key
-    - name: imageUrl
-      description: The image url in your container registry
-    - name: pathToDockerfile
-      default: '.'
-    - name: pipeline-debug
-      default: "0"
-    - name: cluster-name
-      description: the name of the cluster to target
-    - name: dev-cluster-namespace
-      description: namespace dev
-    - name: registry-region
-      description: The IBM Cloud region for image registry
   resourcetemplates:
     # CD secret to provide API_KEY to access toolchain information
     - apiVersion: v1
@@ -43,23 +31,6 @@ spec:
         volumeMode: Filesystem
         accessModes:
           - ReadWriteOnce
-    - apiVersion: tekton.dev/v1beta1
-      kind: PipelineResource
-      metadata:
-        name: $(params.cluster-name)
-      spec:
-        type: cluster
-        params:
-          - name: name
-            value: $(params.cluster-name)
-          - name: username
-            value: norealvalueneeded
-          - name: url
-            value: https://no.real.value.needed
-          - name: token
-            value: norealvalueneeded
-          - name: cadata
-            value: norealvalueneeded
     - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
       metadata:
