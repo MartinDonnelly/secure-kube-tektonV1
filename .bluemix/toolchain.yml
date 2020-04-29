@@ -47,13 +47,13 @@ services:
     service_id: > 
       $env.pipelinetype === 'tekton' ? 'githubconsolidated' : ''
     parameters:
-      repo_name: 'secure-kube-toolchain-toolchain-{{timestamp}}'
+      repo_name: 'alt-toolchain-{{timestamp}}'
       repo_url: >
         $env.type === 'link' ?
-          $env.app_repo : 'https://github.com/huayuenh/secure-kube-toolchain-tekton'
+          $env.app_repo : 'https://github.com/huayuenh/alt'
       source_repo_url: >
         $env.type === 'fork' || $env.type === 'clone' ?
-          $env.app_repo : 'https://github.com/huayuenh/secure-kube-toolchain-tekton'
+          $env.app_repo : 'https://github.com/huayuenh/alt'
       type: $env.type || 'link'
       has_issues: false
       enable_traceability: false
@@ -80,10 +80,10 @@ services:
       repo_name: 'common-tekton-temp-{{timestamp}}'
       repo_url: >
         $env.type === 'link' ?
-          $env.app_repo : 'https://github.com/huayuenh/common-tekton'
+          $env.app_repo : 'https://github.ibm.com/one-pipeline/common-tekton-tasks'
       source_repo_url: >
         $env.type === 'fork' || $env.type === 'clone' ?
-          $env.app_repo : 'https://github.com/huayuenh/common-tekton'
+          $env.app_repo : 'https://github.ibm.com/one-pipeline/common-tekton-tasks'
       type: $env.type || 'link'
       has_issues: false
       enable_traceability: false
