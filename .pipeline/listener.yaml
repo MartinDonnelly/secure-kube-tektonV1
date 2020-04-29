@@ -38,11 +38,6 @@ spec:
       spec:
         pipelineRef:
           name: pipeline-simple-clone
-        params:
-          - name: repository
-            value: $(params.repository)
-          - name: branch
-            value: $(params.branch)
         workspaces:
         - name: pipeline-ws
           persistentVolumeClaim:
