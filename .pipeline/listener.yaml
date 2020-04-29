@@ -1,9 +1,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: TriggerTemplate
 metadata:
-  name: trigger-secube-kube-toolchain
+  name: trigger-template-simple-clone
 spec:
   params:
+    - name: repository
+      description: The git repo
+    - name: branch
+      description: the branch for the git repo
     - name: apikey
       description: the ibmcloud api key
   resourcetemplates:
@@ -34,6 +38,11 @@ spec:
       spec:
         pipelineRef:
           name: pipeline-simple-clone
+        params:
+          - name: repository
+            value: $(params.repository)
+          - name: branch
+            value: $(params.branch)
         workspaces:
         - name: pipeline-ws
           persistentVolumeClaim:
@@ -51,10 +60,10 @@ spec:
 apiVersion: tekton.dev/v1beta1
 kind: EventListener
 metadata:
-  name: listener
+  name: event-listener-simple-clone
 spec:
   triggers:
     - binding:
         name: trigger-binding-simple-clone
       template:
-        name: trigger-secube-kube-toolchain
+        name: trigger-template-simple-clone
