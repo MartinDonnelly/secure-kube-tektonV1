@@ -29,11 +29,11 @@ spec:
         by clicking **Create API key** (Each API key only can be viewed once).
     - name: revision
       description: the branch for the git repo
-  resources:
-  - name: app-image
-    type: image
-  - name: target-cluster
-    type: cluster
+  #resources:
+  #- name: app-image
+  #  type: image
+  #- name: target-cluster
+  #  type: cluster
   tasks:
     - name: fetch-code
       taskRef:
