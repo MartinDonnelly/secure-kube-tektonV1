@@ -31,8 +31,15 @@ spec:
       workspaces:
         - name: workspace
           workspace: pipeline-ws
-    - name: pipeline-2-containerize-task
+    - name: docker-lint-task
       runAfter: [pipeline-1-clone-task]
+      taskRef:
+        name: docker-check-task
+      workspaces:
+        - name: workspace
+          workspace: pipeline-ws
+    - name: pipeline-2-containerize-task
+      runAfter: [docker-lint-task]
       taskRef:
         name: icr-containerize
       params:
