@@ -16,6 +16,8 @@ spec:
       default: '.'
     - name: pipeline-debug
       default: "0"
+    - name: cluster-name
+      description: the name of the cluster to target
   resourcetemplates:
     # CD secret to provide API_KEY to access toolchain information
     - apiVersion: v1
@@ -66,6 +68,8 @@ spec:
             value: $(params.path-to-dockerfile)
           - name: pipeline-debug
             value: $(params.pipeline-debug)
+          - name: cluster-name
+            value: $(params.cluster-name)
         workspaces:
         - name: pipeline-ws
           persistentVolumeClaim:

@@ -12,6 +12,8 @@ spec:
       default: '.'
     - name: pipeline-debug
       default: "0"
+    - name: cluster-name
+      description: the name of the cluster to target
   resources:
   - name: app-image
     type: image
