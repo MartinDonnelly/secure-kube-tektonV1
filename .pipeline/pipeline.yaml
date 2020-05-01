@@ -14,6 +14,8 @@ spec:
       default: "0"
     - name: cluster-name
       description: the name of the cluster to target
+    - name: dev-cluster-namespace
+      description: the namespace
   resources:
   - name: app-image
     type: image
@@ -113,3 +115,5 @@ spec:
           value: "true"
         - name: pipeline-debug
           value: $(params.pipeline-debug)
+        - name: cluster-namespace
+          value: $(params.dev-cluster-namespace)
