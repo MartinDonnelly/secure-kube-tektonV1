@@ -92,3 +92,24 @@ spec:
             resource: app-image
             from:
               - pipeline-2-containerize-task
+    - name: deploy-dev
+      taskRef:
+        name: deploy-to-cluster
+      runAfter: [pipeline-3-va-task]
+      params:
+        - name: repository
+          value: $(params.repository)
+        - name: revision
+          value: $(params.revision)
+        - name: cluster-name
+          value: $(params.cluster-name)
+        - name: cluster-namespace
+          value: $(params.dev-cluster-namespace)
+        - name: cluster-region
+          value: $(params.registry-region)
+        - name: ibmcloud-api-key
+          value: $(params.apikey)
+        - name: allow-create-route
+          value: "true"
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
