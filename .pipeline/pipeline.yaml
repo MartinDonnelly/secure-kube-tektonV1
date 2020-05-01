@@ -16,6 +16,8 @@ spec:
       description: the name of the cluster to target
     - name: dev-cluster-namespace
       description: the namespace
+    - name: registry-region
+      description: The IBM Cloud region for image registry
   resources:
   - name: app-image
     type: image
@@ -117,3 +119,5 @@ spec:
           value: $(params.pipeline-debug)
         - name: cluster-namespace
           value: $(params.dev-cluster-namespace)
+        - name: cluster-region
+          value: $(params.registry-region)
