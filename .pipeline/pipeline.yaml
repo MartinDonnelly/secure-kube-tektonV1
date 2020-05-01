@@ -111,8 +111,6 @@ spec:
           value: $(params.dev-cluster-namespace)
         - name: cluster-region
           value: $(params.registry-region)
-        - name: ibmcloud-api-key
-          value: $(params.apikey)
         - name: allow-create-route
           value: "true"
         - name: pipeline-debug
