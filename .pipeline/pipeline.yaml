@@ -80,7 +80,7 @@ spec:
     - name: deploy-dev
       taskRef:
         name: deploy-to-cluster
-      runAfter: [icr-check-va-scan]
+      runAfter: [pipeline-2-containerize-task]
       params:
         - name: repository
           value: $(params.repository)
