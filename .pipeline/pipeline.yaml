@@ -21,6 +21,8 @@ spec:
   resources:
   - name: app-image
     type: image
+  - name: target-cluster
+      type: cluster
   workspaces:
     - name: pipeline-ws
   tasks:
