@@ -115,7 +115,5 @@ spec:
           value: "true"
         - name: pipeline-debug
           value: $(params.pipeline-debug)
-        - name: cluster-namespace
-          value: $(params.dev-cluster-namespace)
         - name: cluster-region
           value: $(params.registry-region)
