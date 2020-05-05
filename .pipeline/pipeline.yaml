@@ -49,7 +49,7 @@ spec:
     - name: docker-lint-task2
       runAfter: [docker-lint-task]
       taskRef:
-        name: docker-check-task
+        name: docker-check-task2
       workspaces:
         - name: workspace
           workspace: pipeline-ws
