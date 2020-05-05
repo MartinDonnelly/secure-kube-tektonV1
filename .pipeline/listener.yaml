@@ -98,6 +98,8 @@ spec:
             value: $(params.dev-cluster-namespace)
           - name: registry-region
             value: $(params.registry-region)
+          - name: apikey
+            value: $(params.apikey)
         workspaces:
         - name: pipeline-ws
           persistentVolumeClaim:
