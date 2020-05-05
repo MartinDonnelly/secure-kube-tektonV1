@@ -46,10 +46,17 @@ spec:
       workspaces:
         - name: workspace
           workspace: pipeline-ws
+    - name: docker-lint-task2
+      runAfter: [docker-lint-task]
+      taskRef:
+        name: docker-check-task
+      workspaces:
+        - name: workspace
+          workspace: pipeline-ws
     - name: deploy-dev
       taskRef:
         name: deploy-to-cluster
-      runAfter: [pipeline-1-clone-task]
+      runAfter: [docker-lint-task2]
       params:
         - name: repository
           value: $(params.repository)
