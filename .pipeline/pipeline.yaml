@@ -48,10 +48,64 @@ spec:
       workspaces:
         - name: workspace
           workspace: pipeline-ws
+    - name: pipeline-2-containerize-task
+      runAfter: [docker-lint-task]
+      taskRef:
+        name: icr-containerize
+      params:
+        - name: path-to-context
+          value: $(params.path-to-dockerfile)
+        - name: path-to-dockerfile
+          value: $(params.path-to-dockerfile)
+        - name: additional-tags
+          value: 'latest'
+        - name: additional-tags-script
+          value: |
+            # Include the clone task output variables in the environment
+            source /artifacts/build.properties
+            # The script is providing tag(s) as output
+            # But logs can be written as error stderr
+            echo "Providing an image tag including git branch and commit" >&2
+            # Add a specific tag with branch and commit
+            echo "1.0.0-${GIT_BRANCH}-${GIT_COMMIT}"
+            # Add a specific tag with cd build number
+            echo "1.0.0-${BUILD_NUMBER}"            
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+      workspaces:
+        - name: workspace
+          workspace: pipeline-ws
+      resources:
+        outputs:
+          - name: built-image
+            resource: app-image
+    - name: pipeline-3-va-task
+      taskRef:
+        name: icr-check-va-scan
+      params:
+        - name: scan-report-file
+          value: 'app-image-va-report.json'
+        # - name: max-iteration
+        #   value: '5'
+        # - name: sleep-time
+        #   value: '3'
+        # - name: fail-on-scanned-issues
+        #   value: 'false'
+        - name: pipeline-debug
+          value: $(params.pipeline-debug)
+      workspaces:
+        - name: workspace
+          workspace: pipeline-ws
+      resources:
+        inputs:
+          - name: image
+            resource: app-image
+            from:
+              - pipeline-2-containerize-task
     - name: deploy-dev
       taskRef:
         name: docker-check-task2
-      runAfter: [docker-lint-task]
+      runAfter: [pipeline-3-va-task]
       params:
         - name: repository
           value: $(params.repository)
