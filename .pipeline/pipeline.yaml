@@ -42,6 +42,7 @@ spec:
         - name: workspace
           workspace: pipeline-ws
     - name: unit-test
+      runAfter: [git-clone]
       taskRef:
         name: unit-tests-task
       workspaces:
