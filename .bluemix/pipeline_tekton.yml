@@ -5,29 +5,25 @@ inputs:
     service: ${PIPELINE_REPO}
     path: .pipeline
   - type: git
-    branch: master
+    branch: tkn_v1beta1
     service: ${TEKTON_CATALOG_REPO}
     path: git
   - type: git
-    branch: master
-    service: ${TEKTON_TEMP_COMMON}
-    path: preview/containerize
+    branch: tkn_v1beta1
+    service: ${TEKTON_CATALOG_REPO}
+    path: container-registry
   - type: git
     branch: master
     service: ${TEKTON_TEMP_COMMON}
-    path: preview/containerize/docker
+    path: temp/docker
   - type: git
     branch: master
     service: ${TEKTON_TEMP_COMMON}
-    path: preview/compliance-checks/unit-tests
+    path: temp/deploy
   - type: git
     branch: master
     service: ${TEKTON_TEMP_COMMON}
-    path: preview/iks
-  - type: git
-    branch: master
-    service: ${TEKTON_TEMP_COMMON}
-    path: preview/compliance-checks/vulnerability-advisor
+    path: temp/tests
 triggers:
   - type: manual
     name: Manual Trigger
