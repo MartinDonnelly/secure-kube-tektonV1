@@ -57,13 +57,19 @@ spec:
           value: $(params.path-to-dockerfile)
         - name: path-to-dockerfile
           value: $(params.path-to-dockerfile)
+        #- name: additional-tags
+        #  value: 'latest'
         - name: additional-tags-script
           value: |
             # Include the clone task output variables in the environment
             source /artifacts/build.properties
             # The script is providing tag(s) as output
+            # But logs can be written as error stderr
+            echo "Providing an image tag including git branch and commit" >&2
             # Add a specific tag with branch and commit
-            echo "${BUILD_TIMESTAMP}-${GIT_BRANCH}-${GIT_COMMIT}"          
+            echo "1.0.0-${GIT_BRANCH}-${GIT_COMMIT}"
+            # Add a specific tag with cd build number
+            #echo "1.0.0-${BUILD_NUMBER}"            
         - name: pipeline-debug
           value: $(params.pipeline-debug)
       workspaces:
