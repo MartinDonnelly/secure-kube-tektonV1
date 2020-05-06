@@ -43,7 +43,7 @@ spec:
           workspace: pipeline-ws
     - name: unit-test
       taskRef:
-        name: run-unit-tests
+        name: unit-tests-task
       workspaces:
         - name: workspace
           workspace: pipeline-ws
