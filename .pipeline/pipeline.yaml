@@ -28,7 +28,7 @@ spec:
   workspaces:
     - name: pipeline-ws
   tasks:
-    - name: pipeline-1-clone-task
+    - name: git-clone
       taskRef:
         name: git-clone-repo
       params:
@@ -41,15 +41,15 @@ spec:
       workspaces:
         - name: workspace
           workspace: pipeline-ws
-    - name: docker-lint-task
-      runAfter: [pipeline-1-clone-task]
+    - name: docker-lint
+      runAfter: [git-clone]
       taskRef:
         name: docker-check-task
       workspaces:
         - name: workspace
           workspace: pipeline-ws
-    - name: pipeline-2-containerize-task
-      runAfter: [docker-lint-task]
+    - name: containerize
+      runAfter: [docker-lint]
       taskRef:
         name: icr-containerize
       params:
@@ -79,7 +79,7 @@ spec:
         outputs:
           - name: built-image
             resource: app-image
-    - name: pipeline-3-va-task
+    - name: vulnerability-advisor
       taskRef:
         name: icr-check-va-scan
       params:
@@ -101,11 +101,11 @@ spec:
           - name: image
             resource: app-image
             from:
-              - pipeline-2-containerize-task
+              - containerize
     - name: deploy-dev
       taskRef:
         name: docker-check-task2
-      runAfter: [pipeline-3-va-task]
+      runAfter: [vulnerability-advisor]
       params:
         - name: repository
           value: $(params.repository)
