@@ -117,7 +117,7 @@ spec:
 apiVersion: tekton.dev/v1beta1
 kind: EventListener
 metadata:
-  name: event-listener-container-registry
+  name: listener
 spec:
   triggers:
     - binding:
