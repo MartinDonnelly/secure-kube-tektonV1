@@ -75,21 +75,6 @@ services:
       has_issues: false
       enable_traceability: false
       legal: true
-  tekton-temp-common-repo:
-    service_id: > 
-      $env.pipeline_type === 'tekton' ? 'githubconsolidated' : ''
-    parameters:
-      repo_name: 'common-tekton-temp-{{timestamp}}'
-      repo_url: >
-        $env.type === 'link' ?
-          $env.app_repo : 'https://github.com/huayuenh/common-tekton'
-      source_repo_url: >
-        $env.type === 'fork' || $env.type === 'clone' ?
-          $env.app_repo : 'https://github.com/huayuenh/common-tekton'
-      type: $env.type || 'link'
-      has_issues: false
-      enable_traceability: false
-      legal: true
   build:
     service_id: pipeline
     parameters:
