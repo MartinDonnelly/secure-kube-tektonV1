@@ -67,10 +67,10 @@ services:
       repo_name: 'tekton-catalog-{{timestamp}}'
       repo_url: >
         $env.type === 'link' ?
-          $env.app_repo : 'https://github.com/open-toolchain/tekton-catalog'
+          $env.app_repo : 'https://github.com/huayuenh/tekton-catalog'
       source_repo_url: >
         $env.type === 'fork' || $env.type === 'clone' ?
-          $env.app_repo : 'https://github.com/open-toolchain/tekton-catalog'
+          $env.app_repo : 'https://github.com/huayuenh/tekton-catalog'
       type: $env.type || 'link'
       has_issues: false
       enable_traceability: false
@@ -101,7 +101,6 @@ services:
           APP_REPO_FULL: 'https://github.com/{{form.repo.parameters.owner_id}}/{{form.repo.parameters.repo_name}}'
           PIPELINE_REPO: pipeline-repo
           TEKTON_CATALOG_REPO: tekton-catalog-repo
-          TEKTON_TEMP_COMMON: tekton-temp-common-repo
           IMAGE_URL: 'us.icr.io/{{form.pipeline.parameters.registry-namespace}}/{{form.pipeline.parameters.app-name}}'
         execute: > 
           $env.pipeline_type === 'tekton' ? false : true
