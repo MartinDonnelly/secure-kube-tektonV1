@@ -13,15 +13,15 @@ inputs:
     service: ${TEKTON_CATALOG_REPO}
     path: container-registry
   - type: git
-    branch: master
+    branch: task-test
     service: ${TEKTON_CATALOG_REPO}
     path: temp/docker
   - type: git
-    branch: master
+    branch: task-test
     service: ${TEKTON_CATALOG_REPO}
     path: temp/deploy
   - type: git
-    branch: master
+    branch: task-test
     service: ${TEKTON_CATALOG_REPO}
     path: temp/tests
 triggers:
