@@ -22,9 +22,6 @@ spec:
       description: The IBM Cloud region for image registry
     - name: image-url
       description: the url of the image to build
-  resources:
-  - name: target-cluster
-    type: cluster
   workspaces:
     - name: pipeline-ws
   tasks:

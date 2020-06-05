@@ -44,33 +44,12 @@ spec:
         accessModes:
           - ReadWriteOnce
     - apiVersion: tekton.dev/v1beta1
-      kind: PipelineResource
-      metadata:
-        name: $(params.cluster-name)
-      spec:
-        type: cluster
-        params:
-          - name: name
-            value: $(params.cluster-name)
-          - name: username
-            value: norealvalueneeded
-          - name: url
-            value: https://no.real.value.needed
-          - name: token
-            value: norealvalueneeded
-          - name: cadata
-            value: norealvalueneeded
-    - apiVersion: tekton.dev/v1beta1
       kind: PipelineRun
       metadata:
         name: containerize-$(uid)
       spec:
         pipelineRef:
           name: secure-kube-pipeline
-        resources:
-          - name: target-cluster
-            resourceRef:
-              name: $(params.cluster-name)
         params:
           - name: repository
             value: $(params.repository)
