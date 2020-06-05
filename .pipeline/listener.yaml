@@ -68,9 +68,6 @@ spec:
         pipelineRef:
           name: secure-kube-pipeline
         resources:
-          - name: app-image
-            resourceRef:
-              name: image-to-build
           - name: target-cluster
             resourceRef:
               name: $(params.cluster-name)

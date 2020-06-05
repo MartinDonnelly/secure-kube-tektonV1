@@ -23,8 +23,6 @@ spec:
     - name: image-url
       description: the url of the image to build
   resources:
-  - name: app-image
-    type: image
   - name: target-cluster
     type: cluster
   workspaces:
